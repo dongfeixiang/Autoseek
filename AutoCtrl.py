@@ -7,7 +7,7 @@ from ttkbootstrap.dialogs import Messagebox
 class Autoseek(AutoseekUI):
     def __init__(self):
         super().__init__()
-        self.up
+        # self.up
         # 数据模型
         self.datamodel = DataModel()
         self.configMenu()
