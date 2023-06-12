@@ -309,6 +309,8 @@ class DataModel():
             db.update_recordlist(self.recordlist)
             db.update_schelist(self.schelist)
     def run(self):
+        # 测试
+        # Thread(name="notebook", target=lambda:asyncio.run(self.notebook()), daemon=True).start()
         if len(self.recordlist):
             Thread(name="notebook", target=lambda:asyncio.run(self.notebook()), daemon=True).start()
         else:
@@ -341,7 +343,11 @@ class DataModel():
                 await page.wait_for_load_state("networkidle")
                 # 打开实验数据管理模块
                 async with page.expect_popup() as popup_info:
-                    await page.click("//a[text()='实验数据管理']")
+                    # 旧版app入口
+                    # await page.click("//a[text()='实验数据管理']")
+
+                    # 新版app入口
+                    await page.click("//div[text()='电子实验记录本']")
                 page1 = await popup_info.value
                 page1.set_default_timeout(60000)
                 await page1.wait_for_load_state("networkidle")
